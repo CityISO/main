@@ -24,10 +24,10 @@ def AdFilterPost(caption):
             return AdState
         k += 1
 def give_emoji_free_text(text):
-    allchars = [str for str in text.decode('utf-8')]
-    emoji_list = [c for c in allchars if c in emoji.UNICODE_EMOJI]
-    clean_text = ' '.join([str for str in text.decode('utf-8').split() if not any(i in str for i in emoji_list)])
-    return clean_text
+        allchars = [str for str in text.decode('utf-8')]
+        emoji_list = [c for c in allchars if c in emoji.UNICODE_EMOJI]
+        clean_text = ' '.join([str for str in text.decode('utf-8').split() if not any(i in str for i in emoji_list)])
+        return clean_text
 def TopicDetectorCaption(caption):
     text =give_emoji_free_text(caption.encode('utf8'))
     topics=[]
@@ -39,27 +39,24 @@ def TopicDetectorCaption(caption):
         f_tc.close()
         topics.append(term.normalized)
     return topics
-def give_emoji_free_text(text):
-    allchars = [str for str in text.decode('utf-8')]
-    emoji_list = [c for c in allchars if c in emoji.UNICODE_EMOJI]
-    clean_text = ' '.join([str for str in text.decode('utf-8').split() if not any(i in str for i in emoji_list)])
-    return clean_text
 def sentiment(caption):
-    charact=[]
     i=caption
     wt=0
-    t=give_emoji_free_text(i.encode('utf8'))
-    tt=t.translate(table)
-    mark=0
-    for ww in tt.split():
-        if ww.isalpha()==False and ww!='\n':
-            wt=1
-    if wt!=1:
-        st=translator.translate(tt).text
-        ss=sid.polarity_scores(st)
-        sss=sorted(ss)
-        mark=float('{1}'.format(sss[0], ss[sss[0]]))
-    return(mark)
+    if type(i)!=None:
+        t=give_emoji_free_text(i.encode('utf8'))
+        tt=t.translate(table)
+        mark=0
+        for ww in tt.split():
+            if ww.isalpha()==False and ww!='\n':
+                wt=1
+        if wt!=1:
+            st=translator.translate(tt).text
+            ss=sid.polarity_scores(st)
+            sss=sorted(ss)
+            mark=float('{1}'.format(sss[0], ss[sss[0]]))
+        return(mark)
+    else:
+        return(0)
 import pymorphy2
 morph = pymorphy2.MorphAnalyzer()
 import instaloader
@@ -90,6 +87,7 @@ pol=[]
 otr=[]
 neu=[]
 for i in cap:
+        try:
             mark=sentiment(i)
             i =give_emoji_free_text(i.encode('utf8'))
             try:
@@ -98,19 +96,23 @@ for i in cap:
                     st=translator.translate(tt).text
                     i=st
                     topic_l=TopicDetectorCaption(i)
-                if mark==0:
-                    neu.append(i)
-                else:
-                    for top in topic_l:
-                        f_tc = open('TopicWordsCaptionSents.txt', 'a')
-                        f_tc.write(top + " " + str(mark)+ '\n')
-                        f_tc.close()
-                    if mark<0:
-                        otr.append(i)
+                    if mark==0:
+                        neu.append(i)
                     else:
-                        pol.append(i)
+                        for top in topic_l:
+                            f_tc = open('TopicWordsCaptionSents.txt', 'a')
+                            f_tc.write(top + " " + str(mark)+ '\n')
+                            f_tc.close()
+                        if mark<0:
+                            otr.append(i)
+                        else:
+                            pol.append(i)
+                else:
+                    pass
             except:
                 pass
+        except:
+            pass
 print(pol)
 print(otr)
 print(neu)
