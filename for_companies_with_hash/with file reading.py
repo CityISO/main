@@ -73,7 +73,6 @@ import codecs
 with codecs.open('HashtagName.txt', encoding='utf-8') as fin:
     firstline=fin.readlines()[0].strip()
 hash_to_find=firstline
-print('h',hash_to_find)
 for post_EKB in L.get_hashtag_posts(hash_to_find):
     if post_EKB.likes > 15 and post_EKB.is_video == False and post_EKB.caption != "" and AdFilterPost(post_EKB.caption)==1:
         L.download_post(post_EKB, target=EKB_id)
