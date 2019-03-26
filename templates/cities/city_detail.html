@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <div class="ui inverted vertical masthead center aligned segment" style="">
+    <div class="ui center aligned container">
+        <h1>{{ city.name }}</h1>
+        <h3>Настроение в городе: <span style="color: #BF3030;">70%</span></h3>
+        <h3>Статистика за последние 2 дня:</h3>
+        <div class="ui center aligned container" id="chart_div" style="width: 80%; height: 500px;"></div>
+        <div class="ui center aligned container" id="table_statistics">
+            <table class="ui celled table">
+                <thead>
+                <tr>
+                    <th>Число</th>
+                    <th>Уровень настроения</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td data-label="Name">24</td>
+                    <td data-label="Age">-0.5</td>
+                </tr>
+                <tr>
+                    <td data-label="Name">25</td>
+                    <td data-label="Age">0.1</td>
+                </tr>
+                <tr>
+                    <td data-label="Name">26</td>
+                    <td data-label="Age">0.7</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

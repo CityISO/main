@@ -1,8 +1,12 @@
 from django.db import models
 
+from cities.models import City
+
 
 class InstagramPost(models.Model):
     # todo think about unique
+    city = models.ForeignKey(to=City, on_delete=models.SET_NULL, null=True, verbose_name="город")
+
     shortcode = models.SlugField(verbose_name='Шорткод',
                                  max_length=124, unique=True)
     text = models.TextField(verbose_name='Текст')
@@ -34,7 +38,6 @@ class InstagramPost(models.Model):
 class InstagramPostAnalysis(models.Model):
     post = models.ForeignKey(InstagramPost, models.CASCADE)
     sentiment_score = models.FloatField()
-    # topic_theme = todo add text modeling
 
     def __str__(self):
         return "Результат %s" % self.post.shortcode
@@ -42,3 +45,15 @@ class InstagramPostAnalysis(models.Model):
     class Meta:
         verbose_name = 'Результат анализа поста'
         verbose_name_plural = 'Результаты анализа постов'
+
+
+class InstagramPostsThematic(models.Model):
+    city = models.ForeignKey(to=City, on_delete=models.SET_NULL, null=True, verbose_name="город")
+
+    from_time = models.DateField(verbose_name="начало")
+    to_time = models.DateField(verbose_name="конец")
+
+    themes = models.TextField(verbose_name="темы")
+
+    def __str__(self):
+        return self.city.name + " " + self.themes[:30]

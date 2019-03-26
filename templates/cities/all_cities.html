@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="ui inverted vertical masthead center aligned segment" style="
+    background-image: url({% static 'pngs/Picture.png' %});
+    background-repeat: no-repeat;
+    background-size: cover;">
+
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu" style="border-color: transparent;">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                <a class="item" href="index.html">Главная</a>
+                <a class="active item">Статистика</a>
+                <a class="item" href="about-us.html">О нас</a>
+            </div>
+        </div>
+    </div>
+
+    <br><br><br><br><br>
+
+    <div class="ui link cards center aligned grid" style="">
+        {% for city in cities %}
+            {#  todo make card clickable #}
+        <a class="card" href="{% url 'cities:get-city-by-id' city.id %}">
+            <div class="image">
+                <img src="{{ city.image.url }}" alt="">
+            </div>
+
+            <div class="content">
+                <div class="header">{{ city.name }}</div>
+                <div class="description">
+                    {{ city.small_description }}
+                </div>
+            </div>
+        </a>
+
+        {% endfor %}
+    </div>
+{% endblock %}

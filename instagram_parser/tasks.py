@@ -15,7 +15,7 @@ nltk.download('vader_lexicon')
 
 
 @shared_task
-def parse_instagram(location_id: str, to_date: str, max_count=20, likes_count=15) -> None:
+def parse_instagram(location_id: str, to_date: str, max_count=20, likes_count=15, city_id=1) -> None:
     """
 
     Method parsing location post by giving location_id
@@ -188,3 +188,9 @@ def _set_post_as_advert(post: InstagramPost):
     post.is_ad = True
     post.processed = True
     post.save()
+
+
+@shared_task
+def get_themes_from_time_to_time_from_city(from_time, to_time, city_id):
+
+    pass
