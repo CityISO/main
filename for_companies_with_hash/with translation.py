@@ -66,7 +66,7 @@ import instaloader
 L = instaloader.Instaloader(download_pictures=True, download_geotags=False, download_comments=False, download_videos=False, download_video_thumbnails=False, compress_json=False)
 likes = instaloader.Post.get_likes(L)
 EKB_id = '221661431'
-max_count = 10
+max_count = 50
 ca=[]
 i = 0
 import codecs
@@ -92,22 +92,25 @@ neu=[]
 for i in cap:
             mark=sentiment(i)
             i =give_emoji_free_text(i.encode('utf8'))
-            if detect(i)!='ru' and detect(i)!='en':
-                tt=i.translate(table)
-                st=translator.translate(tt).text
-                i=st
-            topic_l=TopicDetectorCaption(i)
-            if mark==0:
-                neu.append(i)
-            else:
-                for top in topic_l:
-                    f_tc = open('TopicWordsCaptionSents.txt', 'a')
-                    f_tc.write(top + " " + str(mark)+ '\n')
-                    f_tc.close()
-                if mark<0:
-                    otr.append(i)
+            try:
+                if detect(i)!='ru' and detect(i)!='en':
+                    tt=i.translate(table)
+                    st=translator.translate(tt).text
+                    i=st
+                    topic_l=TopicDetectorCaption(i)
+                if mark==0:
+                    neu.append(i)
                 else:
-                    pol.append(i)
+                    for top in topic_l:
+                        f_tc = open('TopicWordsCaptionSents.txt', 'a')
+                        f_tc.write(top + " " + str(mark)+ '\n')
+                        f_tc.close()
+                    if mark<0:
+                        otr.append(i)
+                    else:
+                        pol.append(i)
+            except:
+                pass
 print(pol)
 print(otr)
 print(neu)
