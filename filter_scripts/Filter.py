@@ -20,13 +20,25 @@ def AdFilterHashtag(hashtag):
     f = open('AdFilter.txt', 'r')
     StopWords = [line.strip() for line in f]
     f.close()
+    AdState = None
     k = 0
-    for i in StopWords:
-        result = re.findall(StopWords[k], str(hashtag))
-        if result != []:
-            AdState = "Рекламный пост"
-            return AdState
-        else:
-            AdState = "Не рекламный пост"
-            return AdState
-        k += 1
+    g = 0
+    morph = pymorphy2.MorphAnalyzer()
+    result = []
+    while result == [] and k != len(StopWords):
+        for i in StopWords:
+            for j in range(len(hashtag)):
+                hashtag[g] = morph.parse(hashtag[g])[0].normal_form
+                result = re.findall(StopWords[k], str(hashtag[g]))
+                g += 1
+                if result != []:
+                    AdState = "Рекламный пост"
+                    break
+                else:
+                    AdState = "Не рекламный пост"
+            if result != []:
+                AdState = 'Рекламный пост'
+                break
+            g = 0
+            k += 1
+    return AdState
