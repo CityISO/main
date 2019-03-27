@@ -66,7 +66,7 @@ advert=["надевать","дизайн","вопрос","студия","пок�
 L = instaloader.Instaloader(download_pictures=True, download_geotags=False, download_comments=False, download_videos=False, download_video_thumbnails=False, compress_json=False)
 likes = instaloader.Post.get_likes(L)
 EKB_id = '221661431'
-max_count = 20
+max_count = 50
 ca=[]
 i = 0
 import codecs
