@@ -219,30 +219,3 @@ def is_post_ad_by_hashtag(hashtags: list) -> bool:
 def get_themes_from_time_to_time_from_city(from_time, to_time, city_id):
 
     pass
-
-
-def _text_is_not_advert(text) -> bool:  # todo
-    """
-
-    Naive text advert checker. Works w/ list of stop-words
-
-    :param text: Text to check if its advert
-    :type text: str
-    :return:
-
-    .. note:: The function w/ reversed output (note the `not` in function name)
-    """
-
-    advert_words = (
-        "надевать", "дизайн", "вопрос", "студия", "покупка", "предложение",
-        "скидка", "новый", "этаж", "ссылка", "каблук",
-        "заказ", "продавцы", "цена", "размер", "приобрести",
-        "информация", "заказ", "наращивание", "запись", "заказать",
-        "купить", "стоимость", "наличие", "примерка", "доставка", "адрес", "продажа", "инструкция")
-    morph = pymorphy2.MorphAnalyzer()
-
-    text_words = _convert_text(text).lower().split()
-    for word in text_words:
-        if morph.parse(word)[0].normal_form in advert_words:
-            return False
-    return True
