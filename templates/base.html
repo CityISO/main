@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bulma-0.7.4 2/css/bulma.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/custom.css' %}">
+
+    {% block css %}
+
+    {% endblock %}
+
+
+    <title>{% block title %}Образ города{% endblock %}</title>
+</head>
+<body>
+
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="container">
+
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    Образ города
+                </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                   data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/">
+                        Главная
+                    </a>
+                    <a class="navbar-item" href="{% url 'cities:index' %}">
+                        Статистика
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    <!--<div class="container">-->
+        <!--<div class="content is-medium">-->
+            <!--<h1 class="title">Цель</h1>-->
+
+            <!--<p>Создать веб-платформу, с помощью которой можно отслеживать настроение жителей города путем семантического-->
+                <!--анализа текста, хэштегов и эмоциональной окраски фотографии в социальных сетях.</p>-->
+
+
+            <!--<h1 class="title is-spaced">Схема работы</h1>-->
+            <!--<ul>-->
+                <!--<li>Парсинг данных из разных источников</li>-->
+                <!--<li>Обработка данных</li>-->
+                <!--<li>Проведение анализа</li>-->
+            <!--</ul>-->
+
+
+            <!--<p>Это первый этап. На этом этапе мы собираем данные из социальных сетей для анализа. В ходе разработки наша-->
+                <!--команда выбрала для начала соц. сеть Instagram. Для работы с социальной сетью была выбрана библиотека-->
+                <!--Instaloader (https://instaloader.github.io/). </p>-->
+
+            <!--<p>Изначально, чтобы набрать данные, было собрано ~2000 постов. После этого парсинг был поставлен в фоновую-->
+                <!--задачу, чтобы постоянно обновлять данные (не более 100 постов по локации). Выполнение фоновых задач-->
+                <!--осуществляется через Celery. Данные сохраняются в PostgreSQL.</p>-->
+
+
+            <!--<h1 class="title">Обработка данных</h1>-->
+            <!--<p>После сбора данные необходимо обработать. Для MVP было выбрано несколько направлений - обработка текста,-->
+
+                <!--тематическое моделирование, а также анализ фотографий. </p>-->
+            <!--<p>Обработка текста проходит в несколько этапов: форматирование текста через регулярное выражение, а после-->
+                <!--все слова в тексте приводятся в начальную форму (pymorphy2 (https://pymorphy2.readthedocs.io)). Это-->
+                <!--делается для наивной проверки на рекламные сообщения, т.е через стоп-слова.</p>-->
+
+            <!--<p>Исходный текст проходит тональный анализ через NLTK (https://www.nltk.org/). Здесь возникает проблема с-->
+                <!--тем, что NLTK действует лишь для англоязычных текстов, однако это легко исправить, воспользовавшись API-->
+                <!--для работы с GoogleTranslator (https://cloud.google.com/translate/docs/apis). В связи с необходимостью-->
+                <!--его использования, для устранения ошибок при выполнении программы, используется функция удаления-->
+                <!--смайликов из текста, базирующаяся на библиотеке emoji (https://pypi.org/project/emoji/). Результат-->
+                <!--анализа записывается в базу данных.</p>-->
+
+            <!--<p>Для тематического анлаиза текста наша команда использовала библиотеку rutermextract-->
+                <!--(https://github.com/igor-shevchenko/rutermextract).</p>-->
+
+            <!--<p>А для анализа фото была использована библиотека keras (https://github.com/keras-team). </p>-->
+
+            <!--<h1 class="title">Отображение данных</h1>-->
+            <!--<p>После обработки данных, их необходимо предоставить пользователю платформы. </p>-->
+
+            <!--<p>Для этого был выбран WEB фреймворк Django. Это обусловлено несколькими причинами: проект легко-->
+                <!--расширяется (поскольку представляется многомодульным, мы решили взять именно Django, а не Flask),-->
+                <!--интеграция с Celery (при добавлении новой локации, нужно просто добавить задачу, аргументом которой-->
+                <!--будет ID локации), легкость добавления представлений для работы API, основной язык разработки проекта - -->
+                <!--Python. </p>-->
+            <!--<p>Для работы на клиентской стороне выбран JS (VueJS и библиотеки, для работы с картой, графиками).</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    {% endblock %}
+
+    {% block footer %}
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Проект <strong>"Образ города"</strong> был подготовлен в ходе участия в конкурсе
+                <a href="https://konkurs.sochisirius.ru/" class="is-link">"Большие вызовы"</a>.
+            </p>
+        </div>
+    </footer>
+    {% endblock %}
+
+    <!-- Bulma navbar script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Check if there are any navbar burgers
+            if ($navbarBurgers.length > 0) {
+
+                // Add a click event on each of them
+                $navbarBurgers.forEach(el => {
+                    el.addEventListener('click', () => {
+
+                        // Get the target from the "data-target" attribute
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+
+        });
+    </script>
+    </body>
+</html>

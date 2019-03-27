@@ -1,5 +1,7 @@
 import re
 import pymorphy2
+
+
 def AdFilterPost(caption):
     f = open('AdFilter.txt', 'r')
     StopWords = [line.strip() for line in f]
@@ -16,6 +18,8 @@ def AdFilterPost(caption):
         else:
             AdState = "Не рекламный пост"
     return AdState
+
+
 def AdFilterHashtag(hashtag):
     f = open('AdFilter.txt', 'r')
     StopWords = [line.strip() for line in f]

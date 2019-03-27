@@ -1,0 +1,12 @@
+@charset "utf-8";
+@import "../bulma-0.7.4 2/bulma.sass";
+
+$primary: #56306A;
+
+.card{
+  transition: 0.3s;
+
+  &:hover {
+    transform: translate(0px, -0.5rem);
+  }
+}

@@ -7,11 +7,15 @@ term_extractor = TermExtractor()
 translator = Translator()
 table=str.maketrans({key: None for key in string.punctuation})
 sid = SentimentIntensityAnalyzer()
+
+
 def give_emoji_free_text(text):
     allchars = [str for str in text.decode('utf-8')]
     emoji_list = [c for c in allchars if c in emoji.UNICODE_EMOJI]
     clean_text = ' '.join([str for str in text.decode('utf-8').split() if not any(i in str for i in emoji_list)])
     return clean_text
+
+
 def TopicDetectorCaption(caption):
     text =give_emoji_free_text(caption.encode('utf8'))
     topics=[]
@@ -23,11 +27,15 @@ def TopicDetectorCaption(caption):
         f_tc.close()
         topics.append(term.normalized)
     return topics
+
+
 def give_emoji_free_text(text):
     allchars = [str for str in text.decode('utf-8')]
     emoji_list = [c for c in allchars if c in emoji.UNICODE_EMOJI]
     clean_text = ' '.join([str for str in text.decode('utf-8').split() if not any(i in str for i in emoji_list)])
     return clean_text
+
+
 def sentiment(caption):
     charact=[]
     i=caption
@@ -44,6 +52,8 @@ def sentiment(caption):
         sss=sorted(ss)
         mark=float('{1}'.format(sss[0], ss[sss[0]]))
     return(mark)
+
+
 import pymorphy2
 morph = pymorphy2.MorphAnalyzer()
 import instaloader

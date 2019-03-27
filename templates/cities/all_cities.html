@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="container is-flex-fullhd" style="max-width: 100%; flex-wrap: wrap;">
+
+    {% for city in cities %}
+        <a class="card" style="width: 30%; margin: 20px;" href="{% url 'cities:get-city-by-id' city.id %}">
+
+            <div class="card-image">
+                <figure class="image is-4by3">
+                    <img src="{{ city.image_preview.url }}" alt="Изображение {{ city.name }}">
+                </figure>
+            </div>
+
+            <div class="card-content">
+                <div class="media">
+                    <div class="media-content">
+                        <p class="title is-4">{{ city.name }}</p>
+                        <p class="subtitle is-6">{{ city.small_description }}</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    {% endfor %}
+    </div>
+{% endblock %}

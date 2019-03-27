@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('key', '*7&kj!up_a-4pw2173sr5a&9%$kuw4c#)*gy@ak0#yl1d*79g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['213.159.210.107', 'localhost']
 
 
 # Application definition
@@ -41,7 +41,7 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = ('django_celery_beat', )
 
-PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig', )
+PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig', 'cities.apps.CitiesConfig')
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'city_iso.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,6 +128,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
 
 # CELERY SETTINGS
 CELERY_BROKER_URL = os.getenv('BROKER_URL', 'amqp://guest:guest@localhost:5672//')

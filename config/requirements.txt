@@ -8,9 +8,12 @@ Django==2.1.7
 django-celery-beat==1.4.0
 django-timezone-field==3.0
 docopt==0.6.2
+googletrans==2.4.0
 idna==2.8
 instaloader==4.2.2
 kombu==4.4.0
+nltk==3.4
+Pillow==5.4.1
 psycopg2==2.7.7
 psycopg2-binary==2.7.7
 pymorphy2==0.8
@@ -19,6 +22,7 @@ python-crontab==2.3.6
 python-dateutil==2.8.0
 pytz==2018.9
 requests==2.21.0
+singledispatch==3.4.0.3
 six==1.12.0
 urllib3==1.24.1
 vine==1.2.0
