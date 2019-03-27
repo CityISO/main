@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('key', '*7&kj!up_a-4pw2173sr5a&9%$kuw4c#)*gy@ak0#yl1d*79g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['213.159.210.107', 'localhost']
+ALLOWED_HOSTS = ['213.159.210.107', 'localhost', 'cityiso.ddns.net']
 
 
 # Application definition
@@ -39,7 +39,7 @@ DEFAULT_APPS = (
     'django.contrib.staticfiles',
 )
 
-THIRD_PARTY_APPS = ('django_celery_beat', )
+THIRD_PARTY_APPS = ('django_celery_beat', 'rest_framework', )
 
 PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig',
                 'cities.apps.CitiesConfig',

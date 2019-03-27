@@ -113,7 +113,7 @@ def _get_post_filter_function(to_date, likes_count):  # todo solve to_date probl
 
 def _is_post_not_advert(post, callback: Callable) -> bool:
 
-    if not (is_post_ad_by_caption(post.caption) or is_post_ad_by_hashtag(post.caption_hashtags)):
+    if is_post_ad_by_caption(post.caption):
         return True
 
     callback(post)
@@ -188,34 +188,6 @@ def is_post_ad_by_caption(caption: str) -> bool:
     return False
 
 
-def is_post_ad_by_hashtag(hashtags: list) -> bool:
-    stop_words = _get_stop_words()
-
-    morph = pymorphy2.MorphAnalyzer()
-    k = 0
-    g = 0
-    result = []
-
-    while result == [] and k != len(stop_words):
-        for i in stop_words:
-            for j in range(len(hashtags)):
-
-                hashtags[g] = morph.parse(hashtags[g])[0].normal_form
-                result = re.findall(stop_words[k], str(hashtags[g]))
-                g += 1
-
-                if result:
-                    return True
-
-            if result:
-                return True
-            g = 0
-            k += 1
-
-    return False
-
-
 @shared_task
 def get_themes_from_time_to_time_from_city(from_time, to_time, city_id):
-
     pass
