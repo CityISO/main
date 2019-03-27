@@ -1,5 +1,30 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <style>
+        #cover{
+            background-image: url({% static 'pngs/Picture.png' %});
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
 
 {% block content %}
+    <section class="hero is-primary is-medium is-fullheight-with-navbar" id="cover">
 
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title is-1">
+                    Образ города
+                </h1>
+                <h2 class="subtitle">
+                    Анализ эмоционального состояния в городе
+                </h2>
+            </div>
+        </div>
+    </section>
 {% endblock %}
+
+{% block footer %}{% endblock %}
