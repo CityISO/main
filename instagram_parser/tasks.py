@@ -29,10 +29,10 @@ def parse_instagram(location_id: str, to_date: str, max_count=20, likes_count=15
     :param to_date: After the date parser stops its work
     :param max_count: Maximum of total parsed posts
     :param likes_count: Minimum likes count to filter post
+    :param city_id:
 
     :return: List of location posts
 
-    .. todo:: Add try for any errors that can happen while working
     """
     insta = Instaloader(download_comments=False, download_video_thumbnails=False,
                         download_videos=False, download_pictures=False)
@@ -53,10 +53,10 @@ def parse_instagram(location_id: str, to_date: str, max_count=20, likes_count=15
     except InstaloaderException as e:
         print(e)  # todo add logging
 
-    add_new_posts_to_db(total_posts)
+    add_new_posts_to_db(total_posts, city_id=city_id)
 
 
-def add_new_posts_to_db(posts: Iterable[Post]):
+def add_new_posts_to_db(posts: Iterable[Post], city_id=1):
     """
 
     :param posts:
@@ -72,7 +72,8 @@ def add_new_posts_to_db(posts: Iterable[Post]):
                 comments_count=post.comments,
                 post_lat=post.location.lat,
                 post_lon=post.location.lng,
-                owner=post.owner_username
+                owner=post.owner_username,
+                city_id=city_id
             )
             post_db.save()
         except Exception as e:  # todo
