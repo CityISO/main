@@ -6716,7 +6716,9 @@ label.panel-block {
   padding: 3rem 1.5rem 6rem; }
 
 .card {
-  transition: 0.3s; }
+  transition: 0.3s;
+  width: 30%;
+  margin: 2rem 0.5rem 0.5rem 0; }
   .card:hover {
     transform: translate(0px, -0.5rem); }
 

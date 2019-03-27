@@ -8,6 +8,8 @@ translator = Translator()
 table=str.maketrans({key: None for key in string.punctuation})
 sid = SentimentIntensityAnalyzer()
 import re
+
+
 def AdFilterPost(caption):
     f = open('AdFilter.txt', 'r')
     StopWords = [line.strip() for line in f]
@@ -22,11 +24,15 @@ def AdFilterPost(caption):
             AdState = 1
             return AdState
         k += 1
+
+
 def give_emoji_free_text(text):
     allchars = [str for str in text.decode('utf-8')]
     emoji_list = [c for c in allchars if c in emoji.UNICODE_EMOJI]
     clean_text = ' '.join([str for str in text.decode('utf-8').split() if not any(i in str for i in emoji_list)])
     return clean_text
+
+
 def TopicDetectorCaption(caption):
     text =give_emoji_free_text(caption.encode('utf8'))
     topics=[]

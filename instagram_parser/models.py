@@ -57,3 +57,5 @@ class InstagramPostsThematic(models.Model):
 
     def __str__(self):
         return self.city.name + " " + self.themes[:30]
+
+

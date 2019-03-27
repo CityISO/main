@@ -1,3 +1,4 @@
+import binascii
 def canonize(source):
         stop_symbols = '.,!?:;-\n\r()'
         stop_words = (u'это', u'как', u'так',u'и', u'в', u'над',u'к', u'до', u'не',u'на', u'но', u'за',u'то', u'с', u'ли',u'а', u'во', u'от',u'со', u'для', u'о',u'же', u'ну', u'вы',u'бы', u'что', u'кто',u'он', u'она')
@@ -5,7 +6,6 @@ def canonize(source):
 
 
 def genshingle(source):
-    import binascii
     shingleLen = 1 #длина шингла
     out = []
     for i in range(len(source)-(shingleLen-1)):
@@ -31,7 +31,7 @@ def finish_check(themes):
                 cmp1 = genshingle(canonize(text1))
                 cmp2 = genshingle(canonize(text2))
 
-                if compaire(cmp1,cmp2)>66:
+                if compaire(cmp1,cmp2) > 66:
                     themes.remove(j)
 
-    return (themes)
+    return themes
