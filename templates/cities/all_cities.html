@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="container is-flex-fullhd" style="max-width: 100%; flex-wrap: wrap;">
+    <div class="container is-flex-desktop" style="max-width: 100%; flex-wrap: wrap;">
 
     {% for city in cities %}
         <a class="card" style="width: 30%; margin: 20px;" href="{% url 'cities:get-city-by-id' city.id %}">
