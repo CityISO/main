@@ -41,7 +41,10 @@ DEFAULT_APPS = (
 
 THIRD_PARTY_APPS = ('django_celery_beat', )
 
-PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig', 'cities.apps.CitiesConfig')
+PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig',
+                'cities.apps.CitiesConfig',
+
+                'shared.apps.SharedConfig',)
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
@@ -139,4 +142,8 @@ MEDIA_ROOT = 'media/'
 
 # CELERY SETTINGS
 CELERY_BROKER_URL = os.getenv('BROKER_URL', 'amqp://guest:guest@localhost:5672//')
+
+
+# CONSTANTS
+AD_FILTER_WORDS_DB_NAME = 'AD_FILTER_WORDS'
 
