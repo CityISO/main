@@ -143,4 +143,5 @@ CELERY_BROKER_URL = os.getenv('BROKER_URL', 'amqp://guest:guest@localhost:5672//
 
 # CONSTANTS
 AD_FILTER_WORDS_DB_NAME = 'AD_FILTER_WORDS'
+INDICOIO_API_KEY = os.getenv('indicio_key')
 

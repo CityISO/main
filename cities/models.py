@@ -1,5 +1,7 @@
 from django.db import models
 
+BASE_CITY_UPLOAD_DIR = 'city/'
+
 
 class City(models.Model):
     name = models.TextField(max_length=256, unique=True, verbose_name="название")
@@ -15,3 +17,12 @@ class City(models.Model):
     class Meta:
         verbose_name = "город"
         verbose_name_plural = "города"
+
+
+class CityPeoplePhoto(models.Model):
+    city = models.ForeignKey(City, models.SET_NULL, null=True, verbose_name="город")
+    added = models.DateTimeField(auto_now_add=True, verbose_name="добавлено")
+    photo = models.ImageField(verbose_name="портерт из фотографий", upload_to=BASE_CITY_UPLOAD_DIR + "portrait/")
+
+    def __str__(self):
+        return self.city.name + " " + str(self.added)
