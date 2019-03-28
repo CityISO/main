@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = ('django_celery_beat', 'rest_framework', )
 
 PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig',
                 'cities.apps.CitiesConfig',
+                'analysis.apps.AnalysisConfig',
 
                 'shared.apps.SharedConfig',)
 
