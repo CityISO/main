@@ -12,3 +12,18 @@ $primary: #56306A;
     transform: translate(0px, -0.5rem);
   }
 }
+
+.cover-arrow {
+  font-size: 2rem;
+  animation: up-down 2.5ms infinite ease-in-out;
+}
+
+@keyframes up-down {
+  0% {
+    top: -1rem;
+  }
+
+  100% {
+    top: 1rem;
+  }
+}
