@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import InstagramPostSentimentAnalysis
+from .models import InstagramPostSentimentAnalysis, InstagramPostsThemesByDate
 
 
 @admin.register(InstagramPostSentimentAnalysis)
@@ -11,4 +11,7 @@ class InstagramPostAnalysisAdmin(admin.ModelAdmin):
         return obj.post.text[:100]
 
     cut_text.short_description = 'вырезка из текста'
+
+
+admin.site.register(InstagramPostsThemesByDate)
 
