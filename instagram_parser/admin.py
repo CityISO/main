@@ -17,13 +17,3 @@ class InstagramPostAdmin(admin.ModelAdmin):
         )
 
     custom_instagram_link.short_description = 'ссылка на пост'
-
-
-@admin.register(InstagramPostAnalysis)
-class InstagramPostAnalysisAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'cut_text', 'sentiment_score')
-
-    def cut_text(self, obj):
-        return obj.post.text[:100]
-
-    cut_text.short_description = 'вырезка из текста'

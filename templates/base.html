@@ -8,6 +8,7 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles/bulma-0.7.4 2/css/bulma.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/global.css' %}">
 
     {% block css %}
 
@@ -23,7 +24,7 @@
 
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                    Образ города
+                    <img src="{% static 'assets/svg/logo_white_vertical_mini.svg' %}">
                 </a>
 
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
@@ -62,11 +63,15 @@
                 Проект <strong>"Образ города"</strong> был подготовлен в ходе участия в конкурсе
                 <a href="https://konkurs.sochisirius.ru/" class="is-link">"Большие вызовы"</a>.
             </p>
+            <div class="heart-container">
+                <div class="heart"><div></div></div>
+                <a href="http://mt-potatoes.ddns.net/donate/?project=cityiso" class="button is-small is-danger is-outlined">Задонатить на еду</a>
+            </div>
         </div>
     </footer>
     {% endblock %}
 
-    <!-- Bulma navbar script -->
+    {# Bulma navbar script #}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 

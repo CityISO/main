@@ -1,0 +1,128 @@
+/* page */
+
+body > div.container > div.content {
+    padding: 1rem;
+}
+
+body > div.container > div.content h1:not(:first-child) {
+    margin-top: 1rem;
+}
+
+body > div > div p a,
+body > footer.footer > div > p > a {
+    -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+}
+
+/* navbar */
+
+body > nav.navbar {
+    background: #563979;
+    background: -moz-linear-gradient(-45deg, #563979 0%, #9c537d 100%);
+    background: -webkit-gradient(left top, right bottom, color-stop(0%, #563979), color-stop(100%, #9c537d));
+    background: -webkit-linear-gradient(-45deg, #563979 0%, #9c537d 100%);
+    background: -o-linear-gradient(-45deg, #563979 0%, #9c537d 100%);
+    background: -ms-linear-gradient(-45deg, #563979 0%, #9c537d 100%);
+    background: linear-gradient(135deg, #563979 0%, #9c537d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#563979', endColorstr='#9c537d', GradientType=1 );
+}
+
+#navbarBasicExample > div > a {
+    -moz-transition: background-color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+}
+
+#navbarBasicExample > div > a:hover {
+    background-color: #0000001c;
+}
+
+/* cards */
+
+div.card-content div.media-content {
+    overflow: hidden;
+}
+
+/* footer */
+
+body > footer {
+    background-color: #1b1c1d !important;
+    color: #ffffffa0 !important;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+body > footer.footer > div > p > strong {
+    color: #ffffffb3;
+}
+
+body > footer > div a {
+    color: #ffffffbb;
+}
+
+body > footer > div > p > a:hover {
+    color: #ffffffef;
+}
+
+/* heart */
+.heart-container {
+    display: inline-flex;
+}
+
+.heart {
+    display: inline-block;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    transform: rotate(45deg);
+    transform-origin: 16px 16px;
+}
+.heart div {
+    top: 11.5px;
+    left: 8.5px;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    background: #F44336;
+    animation: heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.heart div:after,
+.heart div:before {
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 13px;
+    height: 13px;
+    background: #F44336;
+}
+.heart div:before {
+    left: -8.5px;
+    border-radius: 50% 0 0 50%;
+}
+.heart div:after {
+    top: -8.5px;
+    border-radius: 50% 50% 0 0;
+}
+@keyframes heart {
+    0% {
+        transform: scale(0.95);
+    }
+    5% {
+        transform: scale(1.1);
+    }
+    39% {
+        transform: scale(0.85);
+    }
+    45% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(0.9);
+    }
+}

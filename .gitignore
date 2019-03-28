@@ -2,10 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+local_memes/
 # C extensions
 *.so
-
+.vs/
+.idea/
 # Distribution / packaging
 .Python
 build/
