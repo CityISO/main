@@ -11,13 +11,15 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+        #cover .hero-body {
+            background: #00000070;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
     <section class="hero is-fullheight-with-navbar" id="cover">
         <div class="hero-body">
-
             <div class="container">
                 <div class="has-text-centered">
                     <h1 class="title is-1 has-text-white">{{ city.name }}</h1>
