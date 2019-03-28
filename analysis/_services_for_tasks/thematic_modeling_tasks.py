@@ -9,6 +9,7 @@ from instagram_parser.models import InstagramPost
 
 from analysis.models import InstagramPostsThemesByDate
 
+MAX_SYMBOLS_FOR_TOPIC = 15
 
 @shared_task
 def generate_save_themes_by_city_from_date_to_date(city_id: int, from_date_str: str, to_date_str: str) -> None:
@@ -31,7 +32,8 @@ def _detect_topic_from_caption(caption: str) -> list:
 
     themes = []
     for term in term_extractor(caption, limit=3):
-        themes.append(term.normalized)
+        if len(term.normalized) <= MAX_SYMBOLS_FOR_TOPIC:
+            themes.append(term.normalized)
 
     return themes
 
@@ -43,10 +45,10 @@ def _canonize(source):
 
 
 def _genshingle(source):
-    shingleLen = 1 #длина шингла
+    shingle_len = 1
     out = []
-    for i in range(len(source)-(shingleLen-1)):
-        out.append(binascii.crc32(' '.join( [x for x in source[i:i+shingleLen]] ).encode('utf-8')))
+    for i in range(len(source)-(shingle_len-1)):
+        out.append(binascii.crc32(' '.join( [x for x in source[i:i+shingle_len]] ).encode('utf-8')))
     return out
 
 
@@ -58,21 +60,19 @@ def _compare(source1, source2):
     return same*2/float(len(source1) + len(source2))*100
 
 
-def _finish_check(themes):
+def _finish_check(themes: list):
 
-    for i in themes:
-        for j in themes:
-            if i != j:
-                text1 = i
-                text2 = j
+    for text1 in themes:
+        for text2 in themes:
+            if text1 != text2:
                 cmp1 = _genshingle(_canonize(text1))
                 cmp2 = _genshingle(_canonize(text2))
 
-                try:
-                    if _compare(cmp1, cmp2) > 66:
-                        themes.remove(j)
-                except ZeroDivisionError:
-                    themes.remove(j)
+                if _compare(cmp1, cmp2) > 66:
+                    try:
+                        themes.remove(text1)
+                    except ValueError:
+                        pass
 
     return themes
 
