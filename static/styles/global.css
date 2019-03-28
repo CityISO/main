@@ -51,8 +51,8 @@ div.card-content div.media-content {
 body > footer {
     background-color: #1b1c1d !important;
     color: #ffffffa0 !important;
-    padding: 1rem;
-    margin-top: 1.5rem;
+    padding: 1rem !important;
+    margin-top: 1.5rem !important;
 }
 
 body > footer.footer > div > p > strong {
