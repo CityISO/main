@@ -40,6 +40,12 @@ body > nav.navbar {
     background-color: #0000001c;
 }
 
+/* cards */
+
+div.card-content div.media-content {
+    overflow: hidden;
+}
+
 /* footer */
 
 body > footer {
