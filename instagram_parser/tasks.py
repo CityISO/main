@@ -1,6 +1,7 @@
 from typing import Iterable, Callable
 from functools import partial
 
+from django.conf import settings
 from celery import shared_task
 from instaloader import Instaloader, Post, InstaloaderException
 from googletrans import Translator
@@ -8,6 +9,8 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
 import pymorphy2
 import re
+
+from shared.models import Setting
 
 from .models import InstagramPost, InstagramPostAnalysis
 
@@ -26,10 +29,10 @@ def parse_instagram(location_id: str, to_date: str, max_count=20, likes_count=15
     :param to_date: After the date parser stops its work
     :param max_count: Maximum of total parsed posts
     :param likes_count: Minimum likes count to filter post
+    :param city_id:
 
     :return: List of location posts
 
-    .. todo:: Add try for any errors that can happen while working
     """
     insta = Instaloader(download_comments=False, download_video_thumbnails=False,
                         download_videos=False, download_pictures=False)
@@ -50,10 +53,10 @@ def parse_instagram(location_id: str, to_date: str, max_count=20, likes_count=15
     except InstaloaderException as e:
         print(e)  # todo add logging
 
-    add_new_posts_to_db(total_posts)
+    add_new_posts_to_db(total_posts, city_id=city_id)
 
 
-def add_new_posts_to_db(posts: Iterable[Post]):
+def add_new_posts_to_db(posts: Iterable[Post], city_id=1):
     """
 
     :param posts:
@@ -69,7 +72,8 @@ def add_new_posts_to_db(posts: Iterable[Post]):
                 comments_count=post.comments,
                 post_lat=post.location.lat,
                 post_lon=post.location.lng,
-                owner=post.owner_username
+                owner=post.owner_username,
+                city_id=city_id
             )
             post_db.save()
         except Exception as e:  # todo
@@ -109,36 +113,12 @@ def _get_post_filter_function(to_date, likes_count):  # todo solve to_date probl
 
 
 def _is_post_not_advert(post, callback: Callable) -> bool:
-    if _text_is_not_advert(post.text):
+
+    if is_post_ad_by_caption(post.caption):
         return True
+
     callback(post)
     return False
-
-
-def _text_is_not_advert(text) -> bool:  # todo
-    """
-
-    Naive text advert checker. Works w/ list of stop-words
-
-    :param text: Text to check if its advert
-    :type text: str
-    :return:
-
-    .. note:: The function w/ reversed output (note the `not` in function name)
-    """
-    advert_words = (
-        "надевать", "дизайн", "вопрос", "студия", "покупка", "предложение",
-        "скидка", "новый", "этаж", "ссылка", "каблук",
-        "заказ", "продавцы", "цена", "размер", "приобрести",
-        "информация", "заказ", "наращивание", "запись", "заказать",
-        "купить", "стоимость", "наличие", "примерка", "доставка", "адрес", "продажа", "инструкция")
-    morph = pymorphy2.MorphAnalyzer()
-
-    text_words = _convert_text(text).lower().split()
-    for word in text_words:
-        if morph.parse(word)[0].normal_form in advert_words:
-            return False
-    return True
 
 
 def _convert_text(text: str) -> str:
@@ -190,7 +170,25 @@ def _set_post_as_advert(post: InstagramPost):
     post.save()
 
 
+def _get_stop_words() -> list:
+    return Setting.objects.get(name=settings.AD_FILTER_WORDS_DB_NAME).value.split(',')
+
+
+def is_post_ad_by_caption(caption: str) -> bool:
+    stop_words = _get_stop_words()
+
+    morph = pymorphy2.MorphAnalyzer()
+    caption = morph.parse(caption)[0].normal_form
+
+    for word in stop_words:
+        result = re.findall(morph.parse(word)[0].normal_form, str(caption))
+
+        if result:
+            return True
+
+    return False
+
+
 @shared_task
 def get_themes_from_time_to_time_from_city(from_time, to_time, city_id):
-
     pass

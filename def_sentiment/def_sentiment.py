@@ -5,11 +5,13 @@ import string
 translator = Translator()
 table=str.maketrans({key: None for key in string.punctuation})
 sid = SentimentIntensityAnalyzer()
+
 def give_emoji_free_text(text):
     allchars = [str for str in text.decode('utf-8')]
     emoji_list = [c for c in allchars if c in emoji.UNICODE_EMOJI]
     clean_text = ' '.join([str for str in text.decode('utf-8').split() if not any(i in str for i in emoji_list)])
     return clean_text
+
 def sentiment(captions):
     charact=[]
     for i in captions:
@@ -25,4 +27,5 @@ def sentiment(captions):
             sss=sorted(ss)
             charact.append(float('{1}'.format(sss[0], ss[sss[0]])))
     return( sum(charact) / len(charact))
+
 #print(sentiment(cap))
