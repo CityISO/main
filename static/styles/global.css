@@ -1,0 +1,22 @@
+body > footer {
+    background-color: #1b1c1d !important;
+    color: #ffffffa0 !important;
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
+
+body > footer.footer > div > p > strong {
+    color: #ffffffb3;
+}
+
+body > footer > div > p > a {
+    color: #ffffffbb;
+    -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+}
+
+body > footer > div > p > a:hover {
+    color: #ffffffef;
+}
