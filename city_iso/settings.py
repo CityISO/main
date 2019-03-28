@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = ('django_celery_beat', 'rest_framework', )
 
 PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig',
                 'cities.apps.CitiesConfig',
+                'analysis.apps.AnalysisConfig',
 
                 'shared.apps.SharedConfig',)
 
@@ -142,4 +143,5 @@ CELERY_BROKER_URL = os.getenv('BROKER_URL', 'amqp://guest:guest@localhost:5672//
 
 # CONSTANTS
 AD_FILTER_WORDS_DB_NAME = 'AD_FILTER_WORDS'
+INDICOIO_API_KEY = os.getenv('indicio_key')
 

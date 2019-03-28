@@ -11,7 +11,6 @@ def main_color(files):
             for y in range(h):
                 r, g, b = image.getpixel((x, y))
                 pixel.append([r, g, b])
-        #print(pixel)
         avr = [sum(x)//len(x) for x in zip(*pixel)]
         rl.append(avr[0])
         gl.append(avr[1])
