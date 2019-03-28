@@ -3,10 +3,10 @@
 {% load static %}
 
 {% block content %}
-    <div class="container is-flex-desktop" style="max-width: 100%; flex-wrap: wrap;">
+    <div class="container is-flex-desktop" style="max-width: 100%; flex-wrap: wrap; margin-top: 1rem">
 
     {% for city in cities %}
-        <a class="card" style="width: 30%; margin: 20px;" href="{% url 'cities:get-city-by-id' city.id %}">
+        <a class="card" style="width: 30%; margin: 0.2rem 0.4rem" href="{% url 'cities:get-city-by-id' city.id %}">
 
             <div class="card-image">
                 <figure class="image is-4by3">
