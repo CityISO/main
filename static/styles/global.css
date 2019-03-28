@@ -1,3 +1,23 @@
+/* page */
+
+body > div.container > div.content {
+    padding: 1rem;
+}
+
+body > div.container > div.content h1:not(:first-child) {
+    margin-top: 1rem;
+}
+
+body > div > div p a,
+body > footer.footer > div > p > a {
+    -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+}
+
+/* footer */
+
 body > footer {
     background-color: #1b1c1d !important;
     color: #ffffffa0 !important;
@@ -11,10 +31,6 @@ body > footer.footer > div > p > strong {
 
 body > footer > div > p > a {
     color: #ffffffbb;
-    -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-    -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-    -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 }
 
 body > footer > div > p > a:hover {
