@@ -76,6 +76,7 @@ def _finish_check(themes: list):
 
     return themes
 
+
 __all__ = (
     'generate_save_themes_by_city_from_date_to_date',
 )

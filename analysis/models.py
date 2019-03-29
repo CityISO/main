@@ -29,3 +29,9 @@ class InstagramPostsThemesByDate(models.Model):
     class Meta:
         verbose_name = 'тематики постов'
         verbose_name_plural = verbose_name
+
+
+__all__ = (
+    'InstagramPostSentimentAnalysis',
+    'InstagramPostsThemesByDate',
+)
