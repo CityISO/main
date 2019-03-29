@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 
-from .models import City, CityPeoplePhoto
+from .models import City, CityPeoplePhoto, CityThematicCloud
 
 
 def get_cities(request):
@@ -11,4 +11,5 @@ def get_cities(request):
 def get_city_by_id(request, city_id):
     city = get_object_or_404(City, pk=city_id)
     photos = CityPeoplePhoto.objects.filter(city_id=city_id)
-    return render(request, 'cities/city_detail.html', {'city': city, 'citizen_photos': photos})
+    clouds = CityThematicCloud.objects.filter(city_id=city_id)
+    return render(request, 'cities/city_detail.html', {'city': city, 'citizen_photos': photos, "clouds": clouds })
