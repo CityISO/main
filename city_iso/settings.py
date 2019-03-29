@@ -30,22 +30,21 @@ ALLOWED_HOSTS = ['213.159.210.107', 'localhost', 'cityiso.ddns.net']
 
 # Application definition
 
-DEFAULT_APPS = (
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-)
+    'django.contrib.staticfiles']
 
 THIRD_PARTY_APPS = ('django_celery_beat', 'rest_framework', )
 
-PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig',
+PROJECT_APPS = ['instagram_parser.apps.InstagramParserConfig',
                 'cities.apps.CitiesConfig',
                 'analysis.apps.AnalysisConfig',
 
-                'shared.apps.SharedConfig',)
+                'shared.apps.SharedConfig']
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
