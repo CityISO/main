@@ -30,3 +30,16 @@ class CityPeoplePhoto(models.Model):
     class Meta:
         verbose_name = 'Жители города в коллаже'
         verbose_name_plural = 'Жители городов в коллажах'
+
+
+class CityThematicCloud(models.Model):
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="город")
+    added = models.DateTimeField(auto_now_add=True, verbose_name="добавлено")
+    cloud_photo = models.ImageField(verbose_name="облако", upload_to=BASE_CITY_UPLOAD_DIR + "clouds/")
+
+    def __str__(self):
+        return self.city.name + " " + str(self.added)
+
+    class Meta:
+        verbose_name = "Облако тем в городе"
+        verbose_name_plural = "Облака тем в городах"

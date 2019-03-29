@@ -110,13 +110,26 @@
                     </div>
                     <div id="avg_sentiment_city"></div>
                 </div>
+                {% if clouds %}
+                    <div class="column">
+                        <div class="has-text-centered">
+                            <h3 class="title is-3">Облако тем</h3>
+                        </div>
 
-                <div class="column">
-                    <div class="has-text-centered">
-                        <h3 class="title is-3">Облако тем</h3>
+                        {% for cloud in clouds %}
+
+                            <div class="carousel-words-slider">
+                                {% for photo in citizen_photos %}
+                                    <div class="image slider-image">
+                                        <img src="{{ photo.photo.url }}"/>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                        {% endfor %}
+
                     </div>
-                    <div id="words_cloud"></div>
-                </div>
+                {% endif %}
             </div>
 
             {% if  citizen_photos %}
@@ -149,6 +162,14 @@
     <script type="text/javascript" defer>
         $(document).ready(function () {
             $('.carousel-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+            });
+
+            $('carousel-words-slider').slick({
                 dots: true,
                 infinite: true,
                 speed: 500,

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from instagram_parser.models import InstagramPost
 
-from .models import City, CityPeoplePhoto
+from .models import City, CityPeoplePhoto, CityThematicCloud
 
 
 @admin.register(City)
@@ -16,3 +16,4 @@ class CityAdmin(admin.ModelAdmin):
 
 
 admin.site.register(CityPeoplePhoto)
+admin.site.register(CityThematicCloud)
