@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     {{ city.name }} | Образ города
 {% endblock %}
 
 {% block css %}
+    <style href="{% static 'styles/bulma-carousel.min.css' %}" type="text/css"></style>
     <style>
-        #cover{
+        #cover {
             background-image: url({{ city.image.url }});
             background-repeat: no-repeat;
             background-size: cover;
         }
-        #cover .hero-body {
+
+        #cover .hero-body, .hero-foot {
             background: #00000070;
         }
     </style>
+
+    <style href="{% static 'styles/carousel.css' %}" type="text/css"></style>
 {% endblock %}
 
 {% block content %}
@@ -24,14 +29,55 @@
                 <div class="has-text-centered">
                     <h1 class="title is-1 has-text-white">{{ city.name }}</h1>
                 </div>
-                <p class="subtitle has-text-white">{{ city.description }}</p>
+            </div>
+        </div>
+
+        <div class="hero-foot">
+            <div class="has-text-centered has-text-white">
+                <i class="fa fa-angle-down cover-arrow"></i>
             </div>
         </div>
     </section>
 
     <div class="container">
-        <div class="container">
+        <div class="content">
+            <div class="has-text-centered is-spaced">
+                <h1 class="title is-3">Данные</h1>
+            </div>
 
+            <p class="subtitle">{{ city.description }}</p>
+        </div>
+
+        <div class="content">
+            <div class="columns is-0-desktop-only">
+                <div class="column">
+                    <div class="has-text-centered">
+                        <div class="title is-3">Настроение</div>
+                    </div>
+                    <div id="avg_sentiment_city"></div>
+                </div>
+
+                <div class="column">
+                    <div class="has-text-centered">
+                        <h3 class="title is-3">Облако тем</h3>
+                    </div>
+                    <div id="words_cloud"></div>
+                </div>
+            </div>
+
+            {% if  citizen_photos %}
+                <div class="has-text-centered">
+                    <h3 class="title is-3">Жители</h3>
+                </div>
+            {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/bulma-carousel.js' %}"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
+    <script src="http://d3js.org/d3.v4.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js" defer></script>
+    <script type="text/javascript" src="{% static 'js/city_detail.js' %}" defer></script>
 {% endblock %}
