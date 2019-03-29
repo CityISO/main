@@ -4,9 +4,19 @@
 
 {% block content %}
     <div class="container is-flex-desktop" style="max-width: 100%; flex-wrap: wrap; margin-top: 1rem">
-
+    <style>
+        .card {
+            width: 30%;
+            margin: .4rem;
+        }
+        @media (max-width: 1088px) {
+            .card {
+                margin: 0;
+            }
+        }
+    </style>
     {% for city in cities %}
-        <a class="card" style="width: 30%; margin: 0.4rem 0.4rem" href="{% url 'cities:get-city-by-id' city.id %}">
+        <a class="card" href="{% url 'cities:get-city-by-id' city.id %}">
 
             <div class="card-image">
                 <figure class="image is-4by3">
