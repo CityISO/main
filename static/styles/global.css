@@ -1,5 +1,9 @@
 /* page */
 
+html {
+    overflow: hidden;
+}
+
 body > div.container > div.content {
     padding: 1rem;
 }
