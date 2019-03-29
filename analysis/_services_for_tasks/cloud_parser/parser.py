@@ -36,7 +36,7 @@ def parser():
     morph = pymorphy2.MorphAnalyzer()
     import instaloader
     advert=["надевать","дизайн","вопрос","студия","покупка","предложение","скидка","новый","этаж","ссылка","каблук","заказ","продавцы","цена","размер","приобрести","информация","заказ","наращивание","запись","заказать","купить","стоимость","наличие","примерка","доставка","адрес","продажа","инструкция"]
-    L = instaloader.Instaloader(download_pictures=True, download_geotags=False, download_comments=False, download_videos=False, download_video_thumbnails=False, compress_json=False)
+    L = instaloader.Instaloader(download_pictures=False, download_geotags=False, download_comments=False, download_videos=False, download_video_thumbnails=False, compress_json=False)
     likes = instaloader.Post.get_likes(L)
     EKB_id = '221661431'
     max_count = 10
@@ -46,10 +46,10 @@ def parser():
         if post_EKB.likes > 15 and post_EKB.is_video == False and post_EKB.caption != "":
             L.download_post(post_EKB, target=EKB_id)
             User_Inf_List = [post_EKB.likes, post_EKB.comments, post_EKB.shortcode, post_EKB.owner_username] #Лайки, комменты, шорткод, никнейм
-            f_Us_Inf = open('UserInf_' + str(i) +'.txt', 'w')
-            for Us_inf in User_Inf_List:
-                f_Us_Inf.write(str(Us_inf) + '\n')
-            f_Us_Inf.close()
+            # f_Us_Inf = open('UserInf_' + str(i) +'.txt', 'w')
+            # for Us_inf in User_Inf_List:
+            #     f_Us_Inf.write(str(Us_inf) + '\n')
+            # f_Us_Inf.close()
             i += 1
             dec=0
             unha=0
@@ -87,3 +87,5 @@ def parser():
     print('compound: ', sum(charact) / len(charact))
     #except(ZeroDivisionError):
      #   print('compound: 0.0')
+if __name__ == '__main__':
+    parser()
