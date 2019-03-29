@@ -16,6 +16,7 @@ from analysis.models import InstagramPostSentimentAnalysis
 
 indicoio.config.api_key = settings.INDICOIO_API_KEY
 
+
 def process_new_posts():
     """
 
@@ -80,7 +81,7 @@ def _get_sentiment_score(texts: list) -> list:
     results = []
 
     for chunk in chunks(texts, 90):
-        res = indicoio.sentiment(chunk, language='ru')
+        res = indicoio.sentiment(chunk, language='ru', api_key=settings.INDICOIO_API_KEY)
         results.extend(res)
 
     return results
