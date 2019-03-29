@@ -26,3 +26,7 @@ class CityPeoplePhoto(models.Model):
 
     def __str__(self):
         return self.city.name + " " + str(self.added)
+
+    class Meta:
+        verbose_name = 'Жители города в коллаже'
+        verbose_name_plural = 'Жители городов в коллажах'
