@@ -38,7 +38,7 @@ DEFAULT_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles']
 
-THIRD_PARTY_APPS = ('django_celery_beat', 'rest_framework', )
+THIRD_PARTY_APPS = ['django_celery_beat', 'rest_framework', ]
 
 PROJECT_APPS = ['instagram_parser.apps.InstagramParserConfig',
                 'cities.apps.CitiesConfig',
