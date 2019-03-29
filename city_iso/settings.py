@@ -30,22 +30,21 @@ ALLOWED_HOSTS = ['213.159.210.107', 'localhost', 'cityiso.ddns.net']
 
 # Application definition
 
-DEFAULT_APPS = (
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-)
+    'django.contrib.staticfiles']
 
-THIRD_PARTY_APPS = ('django_celery_beat', 'rest_framework', )
+THIRD_PARTY_APPS = ['django_celery_beat', 'rest_framework', ]
 
-PROJECT_APPS = ('instagram_parser.apps.InstagramParserConfig',
+PROJECT_APPS = ['instagram_parser.apps.InstagramParserConfig',
                 'cities.apps.CitiesConfig',
                 'analysis.apps.AnalysisConfig',
 
-                'shared.apps.SharedConfig',)
+                'shared.apps.SharedConfig']
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
@@ -131,8 +130,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
-# STATIC_ROOT = 'static/'
+STATIC_URL = '/_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '_static/')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
