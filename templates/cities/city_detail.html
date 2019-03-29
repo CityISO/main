@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block css %}
-    <style href="{% static 'styles/bulma-carousel.min.css' %}" type="text/css"></style>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'slick/slick-theme.css' %}"/>
+
     <style>
         #cover {
             background-image: url({{ city.image.url }});
@@ -17,9 +19,55 @@
         #cover .hero-body, .hero-foot {
             background: #00000070;
         }
-    </style>
 
-    <style href="{% static 'styles/carousel.css' %}" type="text/css"></style>
+        #hero-footer {
+            position: relative;
+        }
+
+        .slider-image {
+            width: 825px;
+            height: 825px;
+        }
+
+        .arrow {
+            width: 30px;
+            margin: 0 auto;
+            padding: 35px;
+        }
+
+        .arrow span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-bottom: 5px solid white;
+            border-right: 5px solid white;
+            transform: rotate(45deg);
+            margin: -10px;
+            animation: animate 2s infinite;
+        }
+
+        .arrow span:nth-child(2) {
+            animation-delay: -0.2s;
+        }
+
+        .arrow span:nth-child(3) {
+            animation-delay: -0.4s;
+        }
+
+        @keyframes animate {
+            0% {
+                opacity: 0;
+                transform: rotate(45deg) translate(-20px, -20px);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: rotate(45deg) translate(20px, 20px);
+            }
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -32,9 +80,14 @@
             </div>
         </div>
 
-        <div class="hero-foot">
+        <div class="hero-foot" id="hero-footer">
             <div class="has-text-centered has-text-white">
-                <i class="fa fa-angle-down cover-arrow"></i>
+                <div class="arrow">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
             </div>
         </div>
     </section>
@@ -69,15 +122,39 @@
                 <div class="has-text-centered">
                     <h3 class="title is-3">Жители</h3>
                 </div>
+
+                <div class="carousel-slider">
+                    {% for photo in citizen_photos %}
+                        <div class="image slider-image">
+                            <img src="{{ photo.photo.url }}"/>
+                        </div>
+                    {% endfor %}
+                </div>
+
             {% endif %}
         </div>
     </div>
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{% static 'js/bulma-carousel.js' %}"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer></script>
     <script src="http://d3js.org/d3.v4.js" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js" defer></script>
     <script type="text/javascript" src="{% static 'js/city_detail.js' %}" defer></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="{% static 'slick/slick.js' %}"></script>
+    <script type="text/javascript" defer>
+        $(document).ready(function () {
+            $('.carousel-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+            });
+        });
+    </script>
+
 {% endblock %}
