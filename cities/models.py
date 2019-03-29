@@ -20,7 +20,7 @@ class City(models.Model):
 
 
 class CityPeoplePhoto(models.Model):
-    city = models.ForeignKey(City, models.SET_NULL, null=True, verbose_name="город")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="город")
     added = models.DateTimeField(auto_now_add=True, verbose_name="добавлено")
     photo = models.ImageField(verbose_name="портерт из фотографий", upload_to=BASE_CITY_UPLOAD_DIR + "portrait/")
 
