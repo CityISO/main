@@ -116,9 +116,9 @@
 
                         {% for cloud in clouds %}
 
-                            <div class="carousel-words-slider" style="margin: 0 auto;">
+                            <div class="carousel-words-slider">
                                 {% for photo in clouds %}
-                                    <div class="image slider-image">
+                                    <div class="image slider-image"  style="margin: 0 auto;">
                                         <img src="{{ photo.cloud_photo.url }}"/>
                                     </div>
                                 {% endfor %}
@@ -136,7 +136,7 @@
 
                 <div class="carousel-slider">
                     {% for photo in citizen_photos %}
-                        <div class="image slider-image">
+                        <div class="image slider-image"  style="margin: 0 auto;">
                             <img src="{{ photo.photo.url }}"/>
                         </div>
                     {% endfor %}
