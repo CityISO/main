@@ -104,19 +104,19 @@
 
         <div class="content">
                 <div class="has-text-centered">
-                    <div class="title is-3">Настроение</div>
+                    <div class="title is-3 is-spaced">Настроение</div>
                 </div>
                 <div id="avg_sentiment_city"></div>
 
 
                 {% if clouds %}
                         <div class="has-text-centered">
-                            <h3 class="title is-3">Облако тем</h3>
+                            <h3 class="title is-3 is-spaced">Облако тем</h3>
                         </div>
 
                         {% for cloud in clouds %}
 
-                            <div class="carousel-words-slider">
+                            <div class="carousel-words-slider" style="margin: 0 auto;">
                                 {% for photo in clouds %}
                                     <div class="image slider-image">
                                         <img src="{{ photo.cloud_photo.url }}"/>
@@ -131,7 +131,7 @@
 
             {% if  citizen_photos %}
                 <div class="has-text-centered">
-                    <h3 class="title is-3">Жители</h3>
+                    <h3 class="title is-3 is-spaced">Жители</h3>
                 </div>
 
                 <div class="carousel-slider">
