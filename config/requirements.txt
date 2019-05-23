@@ -33,5 +33,5 @@ requests==2.21.0
 rutermextract==0.3
 singledispatch==3.4.0.3
 six==1.12.0
-urllib3==1.24.1
+urllib3==1.24.2
 vine==1.2.0
