@@ -25,7 +25,7 @@ SECRET_KEY = os.getenv('key', '*7&kj!up_a-4pw2173sr5a&9%$kuw4c#)*gy@ak0#yl1d*79g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['213.159.210.107', 'localhost', 'cityiso.ddns.net']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'city_iso.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'city_iso_project',
-        'USER': 'city_iso_holder',
-        'PASSWORD': 'superhardpassword',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('db_name', 'city_iso_project'),
+        'USER': os.getenv('db_user', 'city_iso_holder'),
+        'PASSWORD': os.getenv('db_pass', 'superhardpassword'),
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
 

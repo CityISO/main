@@ -6,6 +6,7 @@ local_memes/
 # C extensions
 *.so
 .vs/
+.vscode/
 .idea/
 # Distribution / packaging
 .Python
