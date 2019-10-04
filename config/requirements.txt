@@ -19,7 +19,7 @@ kombu==4.4.0
 msgpack==0.5.6
 msgpack-numpy==0.4.1
 msgpack-python==0.5.6
-nltk==3.4
+nltk==3.4.5
 numpy==1.16.2
 Pillow==5.4.1
 psycopg2==2.7.7
